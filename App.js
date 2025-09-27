@@ -11,7 +11,7 @@ export default function App() {
 
   const [isShowLoading, setIsShowLoading] = useState(false);
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(true);
 
   const getForumList = async () => {
     try {
