@@ -1,7 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import {ActivityIndicator, Button, StyleSheet, Text, TextInput, View} from 'react-native';
-import {useEffect, useState} from "react";
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useEffect, useState } from "react";
+
 import Loading from "./components/shared/Loading";
+import NetworkError from "./components/shared/NetworkError";
 
 export default function App() {
   const [forumList, setForumList] = useState([]);
@@ -9,6 +10,8 @@ export default function App() {
   const [keyword, setKeyword] = useState('');
 
   const [isShowLoading, setIsShowLoading] = useState(false);
+
+  const [error, setError] = useState(false);
 
   const getForumList = async () => {
     try {
@@ -31,11 +34,10 @@ export default function App() {
         body: formData
       })
 
-      console.log("获取到的数据为 ==========> ")
       const response = await res.json();
       setForumList(response.data)
-      console.log(response)
-
+    } catch {
+      setError(true)
     } finally {
       setIsShowLoading(false)
     }
@@ -45,8 +47,16 @@ export default function App() {
     getForumList();
   }, [keyword]);
 
+  // 加载中
   if (isShowLoading) {
     return <Loading />
+  }
+
+  // 网络错误提示
+  if (error) {
+    return (
+      <NetworkError />
+    )
   }
 
   return (
