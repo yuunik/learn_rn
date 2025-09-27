@@ -11,7 +11,7 @@ export default function App() {
 
   const [isShowLoading, setIsShowLoading] = useState(false);
 
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false)
 
   const getForumList = async () => {
     try {
@@ -43,6 +43,12 @@ export default function App() {
     }
   }
 
+  // 重新加载
+  const reload = async () => {
+    setError(false)
+    await getForumList()
+  }
+
   useEffect(() => {
     getForumList();
   }, [keyword]);
@@ -55,7 +61,7 @@ export default function App() {
   // 网络错误提示
   if (error) {
     return (
-      <NetworkError />
+      <NetworkError description="Network error" onPressed={reload} />
     )
   }
 

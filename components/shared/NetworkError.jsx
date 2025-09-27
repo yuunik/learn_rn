@@ -1,4 +1,9 @@
-import {View, StyleSheet, Text, Button, TouchableOpacity} from "react-native";
+import {
+    View,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+} from "react-native";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 
 const styles = StyleSheet.create({
@@ -14,18 +19,28 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: '#db893f',
         width: 'auto',
-        padding: 8,
+        height: 40,
+        paddingLeft: 10,
+        paddingRight: 10,
         borderRadius: 8
+    },
+    buttonText: {
+        color: "#fff",
+        lineHeight: 40
     }
 })
 
-const NetworkError = () => {
+const NetworkError = (prop) => {
+    const description = prop.description || "网络错误, 请稍等再试..."
+
+    const { onPressed }  = prop
+
     return (
         <View style={styles.container}>
             <SimpleLineIcons name="drawer" color="#ddd" size={160} />
-            <Text style={styles.description}>网络错误, 请稍等再试...</Text>
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
-                <Text style={{ color: "#fff" }}>重新加载</Text>
+            <Text style={styles.description}>{  description }</Text>
+            <TouchableOpacity activeOpacity={0.6} style={styles.button} onPress={onPressed}>
+                <Text style={styles.buttonText}>重新加载</Text>
             </TouchableOpacity>
         </View>
     )
