@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import Loading from "./components/shared/Loading";
 import NetworkError from "./components/shared/NetworkError";
+import request from "./utils/request";
 
 export default function App() {
   const [forumList, setForumList] = useState([]);
@@ -24,18 +25,25 @@ export default function App() {
       formData.append("token", "LOGIN:07df19f2f7a2a6cbe3f9a9477d911dca");
       formData.append("pageSize", "5");
       formData.append("searchKey", keyword);
+      //
+      //
+      // const res = await fetch("http://192.168.1.21:8013/forum/forums", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      //   body: formData
+      // })
+      //
+      // const response = await res.json();
 
-
-      const res = await fetch("http://192.168.1.21:8013/forum/forums", {
-        method: "POST",
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        body: formData
+      const res = await request({
+        url: '/forum/forums',
+        method: 'POST',
+        data: formData
       })
 
-      const response = await res.json();
-      setForumList(response.data)
+      setForumList(res.data)
     } catch {
       setError(true)
     } finally {
@@ -75,7 +83,6 @@ export default function App() {
         ) : (
             <Text>暂无帖子</Text>
         )}
-        <Button title="获取帖子列表" onPress={getForumList}/>
       </View>
   );
 }
