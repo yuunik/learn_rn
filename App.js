@@ -1,12 +1,66 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {ActivityIndicator, Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import {useEffect, useState} from "react";
+import Loading from "./components/shared/Loading";
 
 export default function App() {
+  const [forumList, setForumList] = useState([]);
+
+  const [keyword, setKeyword] = useState('');
+
+  const [isShowLoading, setIsShowLoading] = useState(false);
+
+  const getForumList = async () => {
+    try {
+      setIsShowLoading(true)
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      const formData = new FormData();
+
+      formData.append("page", "0");
+      formData.append("token", "LOGIN:07df19f2f7a2a6cbe3f9a9477d911dca");
+      formData.append("pageSize", "5");
+      formData.append("searchKey", keyword);
+
+
+      const res = await fetch("http://192.168.1.21:8013/forum/forums", {
+        method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        body: formData
+      })
+
+      console.log("获取到的数据为 ==========> ")
+      const response = await res.json();
+      setForumList(response.data)
+      console.log(response)
+
+    } finally {
+      setIsShowLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    getForumList();
+  }, [keyword]);
+
+  if (isShowLoading) {
+    return <Loading />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <View style={styles.container}>
+        <TextInput style={styles.input} placeholder="Enter... " onChangeText={text => setKeyword(text)} defaultValue={keyword} />
+        {forumList.length > 0 ? (
+            forumList.map(item => (
+                <Text key={item.id} style={styles.title}>{item.title}</Text>
+            ))
+        ) : (
+            <Text>暂无帖子</Text>
+        )}
+        <Button title="获取帖子列表" onPress={getForumList}/>
+      </View>
   );
 }
 
@@ -17,4 +71,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+    title: {
+      fontSize: 20,
+        fontWeight: 'bold',
+        color: '#e29447'
+    },
+  input: {
+    height: 40,
+    width: 300,
+    margin: 12,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+  },
+  loading: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    zIndex: 9999,
+  }
 });
