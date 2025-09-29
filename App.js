@@ -4,79 +4,35 @@ import { useEffect, useState } from "react";
 import Loading from "./components/shared/Loading";
 import NetworkError from "./components/shared/NetworkError";
 import request from "./utils/request";
+import useFetchData from "./hooks/useFetchData";
 
 export default function App() {
-  const [forumList, setForumList] = useState([]);
-
   const [keyword, setKeyword] = useState('');
 
-  const [isShowLoading, setIsShowLoading] = useState(false);
+  const formData = new FormData();
+  formData.append('token', 'LOGIN:07df19f2f7a2a6cbe3f9a9477d911dca');
+  formData.append('page', '0');
+  formData.append('pageSize', '5');
+  formData.append('searchKey', keyword);
 
-  const [error, setError] = useState(false)
-
-  const getForumList = async () => {
-    try {
-      setIsShowLoading(true)
-      await new Promise(resolve => setTimeout(resolve, 2000))
-
-      const formData = new FormData();
-
-      formData.append("page", "0");
-      formData.append("token", "LOGIN:07df19f2f7a2a6cbe3f9a9477d911dca");
-      formData.append("pageSize", "5");
-      formData.append("searchKey", keyword);
-      //
-      //
-      // const res = await fetch("http://192.168.1.21:8013/forum/forums", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      //   body: formData
-      // })
-      //
-      // const response = await res.json();
-
-      const res = await request({
-        url: '/forum/forums',
-        method: 'POST',
-        data: formData
-      })
-
-      setForumList(res.data)
-    } catch {
-      setError(true)
-    } finally {
-      setIsShowLoading(false)
-    }
-  }
-
-  // 重新加载
-  const reload = async () => {
-    setError(false)
-    await getForumList()
-  }
-
-  useEffect(() => {
-    getForumList();
-  }, [keyword]);
+  const { data: forumList , isLoading, error, onReload} = useFetchData("/forum/forums", "POST", formData)
 
   // 加载中
-  if (isShowLoading) {
+  if (isLoading) {
     return <Loading />
   }
 
   // 网络错误提示
   if (error) {
     return (
-      <NetworkError description="Network error" onPressed={reload} />
+      <NetworkError description="Network error" onPressed={onReload} />
     )
   }
 
   return (
       <View style={styles.container}>
         <TextInput style={styles.input} placeholder="Enter... " onChangeText={text => setKeyword(text)} defaultValue={keyword} />
-        {forumList.length > 0 ? (
+        {Array.isArray(forumList) && forumList.length > 0 ? (
             forumList.map(item => (
                 <Text key={item.id} style={styles.title}>{item.title}</Text>
             ))
