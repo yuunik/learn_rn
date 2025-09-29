@@ -2,12 +2,18 @@ import {Text, StyleSheet, View, FlatList} from "react-native";
 import {useEffect, useState} from "react";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import request from "./utils/request";
+import AppAlert from "./components/AppAlert";
 
 // 样式
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF'
+  },
+  display: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   header: {
     color: 'black',
@@ -69,19 +75,8 @@ const App = () => {
 
   return (
       <SafeAreaView style={[styles.container]}>
-        <View style={styles.container}>
-          <FlatList
-              style={styles.container}
-              data={forumList}
-              renderItem={getRenderItem}
-              keyExtractor={item => item.id}
-              ListHeaderComponent={getListHeaderComponent}
-              ListFooterComponent={<Text>...no more</Text>}
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              onEndReached={onEndReached}
-              onEndReachedThreshold={0.1}
-          />
+        <View style={styles.display}>
+          <AppAlert />
         </View>
       </SafeAreaView>
   )
