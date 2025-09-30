@@ -23,7 +23,20 @@ const styles = StyleSheet.create({
 
 const Layout = () => {
     return (
-        <Stack style={styles.container} screenOptions={{ headerTitleAlign: 'center', animation: 'slide_from_right' }}>
+        <Stack
+            style={styles.container}
+            screenOptions={{
+                headerTitleAlign: 'center',
+                animation: 'slide_from_right',
+                headerStyle: {
+                    backgroundColor: '#e29447'
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    fontWeight: 'bold'
+                }
+            }}
+        >
             <Text style={styles.header}>React Native</Text>
             <Slot />
             <Text style={styles.footer}>@develop with yuunik</Text>

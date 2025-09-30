@@ -30,7 +30,11 @@ const App = () => {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ title: 'home'}} />
+            <Stack.Screen
+                options={{
+                  title: 'home'
+                }}
+            />
 
             <TouchableOpacity style={styles.button} onPress={() => router.push('/course/[id]', { params: { id: 123, title: 'Course Info'}})}>
                 <Text style={styles.buttonText}>Go to courseInfo</Text>
