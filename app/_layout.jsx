@@ -1,6 +1,5 @@
-import {Slot, Stack} from "expo-router";
-import {Text, StyleSheet} from "react-native";
-import {SafeAreaView} from "react-native-safe-area-context";
+import { Slot, Stack } from "expo-router";
+import { Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
 
 const Layout = () => {
     return (
-        <Stack style={styles.container} >
+        <Stack style={styles.container} screenOptions={{ headerTitleAlign: 'center', animation: 'slide_from_right' }}>
             <Text style={styles.header}>React Native</Text>
             <Slot />
             <Text style={styles.footer}>@develop with yuunik</Text>

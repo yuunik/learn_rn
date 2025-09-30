@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
-import {useLocalSearchParams} from "expo-router";
+import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import {Stack, useLocalSearchParams, useNavigation} from "expo-router";
 
 const styles = StyleSheet.create({
     container: {
@@ -11,16 +11,27 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontWeight: "bold"
+    },
+    button: {
+        backgroundColor: '#abc',
+        borderRadius: 12,
+        padding: 12,
     }
 })
 
 const CourseInfo = () => {
-    const { id } = useLocalSearchParams();
+    const { id, title } = useLocalSearchParams();
+
+    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>
+            <Stack.Screen options={{ title: "课程详情页"}} />
             <Text style={styles.text}>课程详情页</Text>
-            <Text style={styles.text}>当前课程的id: { id }</Text>
+            <Text style={styles.text}>当前课程的id: { id }, title: { title }</Text>
+            <TouchableOpacity onPress={() => navigation.setOptions({ title: "修改后的标题"})}>
+                <Text>Set Title</Text>
+            </TouchableOpacity>
         </View>
     )
 }
