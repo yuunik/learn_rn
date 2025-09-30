@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
 
 const Layout = () => {
     return (
-        <SafeAreaView style={styles.container} >
+        <Stack style={styles.container} >
             <Text style={styles.header}>React Native</Text>
             <Slot />
-            <Text style={styles.footer}>@ develop with yuunik</Text>
-        </SafeAreaView>
+            <Text style={styles.footer}>@develop with yuunik</Text>
+        </Stack>
     )
 }
 
