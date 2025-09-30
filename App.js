@@ -1,4 +1,4 @@
-import {Text, StyleSheet, View, FlatList} from "react-native";
+import {Text, StyleSheet, View, FlatList, StatusBar, Dimensions} from "react-native";
 import {useEffect, useState} from "react";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import request from "./utils/request";
@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
     height: 100
   }
 })
+
+const { width, height } = Dimensions.get("window")
 
 const App = () => {
   const [refreshing, setRefreshing] = useState(false);
@@ -76,7 +78,7 @@ const App = () => {
   return (
       <SafeAreaView style={[styles.container]}>
         <View style={styles.display}>
-          <AppAlert />
+          <Text>当前屏幕宽度为: { width }, 高度为: { height }</Text>
         </View>
       </SafeAreaView>
   )

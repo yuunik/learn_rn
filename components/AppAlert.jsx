@@ -1,4 +1,4 @@
-import {View, Alert, Text, StyleSheet, Dimensions} from "react-native";
+import {View, Alert, Text, StyleSheet, Dimensions, StatusBar} from "react-native";
 
 const styles = StyleSheet.create({
     container: {
@@ -35,9 +35,7 @@ const AppAlert = () => {
 
 
     return (
-        <View style={styles.container}>
-            <Text>当前屏幕宽度为: { width } , 高度为: { height }</Text>
-        </View>
+        <StatusBar hidden/>
     )
 }
 
