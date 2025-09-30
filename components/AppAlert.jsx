@@ -1,4 +1,4 @@
-import { View, Alert, Button, StyleSheet } from "react-native";
+import {View, Alert, Text, StyleSheet, Dimensions} from "react-native";
 
 const styles = StyleSheet.create({
     container: {
@@ -7,6 +7,8 @@ const styles = StyleSheet.create({
         alignItems: "center"
     }
 })
+
+const { width, height } = Dimensions.get("window")
 
 const AppAlert = () => {
     const onPress = () => Alert.alert('提示信息', '你想干嘛?', [
@@ -34,8 +36,7 @@ const AppAlert = () => {
 
     return (
         <View style={styles.container}>
-            <Button title="你点我撒?" onPress={onPress} />
-            <Button title="你再点我撒?" onPress={onCancel} />
+            <Text>当前屏幕宽度为: { width } , 高度为: { height }</Text>
         </View>
     )
 }
