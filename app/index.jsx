@@ -1,48 +1,51 @@
-import {View, StyleSheet, Text, TouchableOpacity, TouchableHighlight} from "react-native";
+import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
 import {Link, useRouter} from "expo-router";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 12,
+        gap: 30
     },
-    textDisPlay: {
+    headerText: {
         fontSize: 20,
-        width: 200,
         fontWeight: 'bold',
-        color: '#e29447',
-        textAlign: 'center'
+        color: '#abc',
     },
     button: {
-        backgroundColor: '#e29447',
-        padding: 10,
-        borderRadius: 5
-    },
-    buttonText: {
-        color: '#f5f5f5',
-        fontSize: 16
+        backgroundColor: '#cba',
+        padding: 12,
+        borderRadius: 12,
+        textAlign: 'center'
     }
 })
 
 const App = () => {
-    const router = useRouter();
-
-    const onNavigate = () => router.navigate("/details")
-
-    const onReplace = () => router.replace("/details")
+    const router = useRouter()
 
     return (
         <View style={styles.container}>
-            <Text style={styles.textDisPlay}>Hello World</Text>
-            <TouchableOpacity style={styles.button} onPress={onNavigate}>
-                <Text style={styles.buttonText}>navigate</Text>
+            <Text style={styles.headerText}>首页</Text>
+            {/* 方式 1 */}
+            {/*<TouchableOpacity style={styles.button} onPress={() => router.push("/course/123")}>
+                <Text>跳转至课程详情页</Text>
+            </TouchableOpacity>*/}
+
+            {/* 方式 2 */}
+            <TouchableOpacity style={styles.button} onPress={() => router.push("/course/[id]", { params: { id: 123 }})}>
+                <Text>跳转至课程详情页</Text>
             </TouchableOpacity>
-            <TouchableHighlight style={styles.button} onPress={onReplace}>
-                <Text style={styles.buttonText}>replaces</Text>
-            </TouchableHighlight>
+
+            {/* 方式 3 */}
+            {/*<Link href="/course/1" style={styles.button}>*/}
+            {/*    <Text>跳转至课程详情页</Text>*/}
+            {/*</Link>*/}
+
+            {/* 方式 4 */}
+            {/*<Link href={{ pathname: "/course/[id]", params: { id: 2 }} } style={styles.button}>*/}
+            {/*    <Text>跳转至课程详情页</Text>*/}
+            {/*</Link>*/}
         </View>
     )
 }
