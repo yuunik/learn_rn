@@ -1,5 +1,7 @@
 import { Slot, Stack } from "expo-router";
 import { Text, StyleSheet } from "react-native";
+import AppBarLeading from "../components/AppBarLeading";
+import AppLogo from "../components/AppLogo";
 
 const styles = StyleSheet.create({
     container: {
@@ -29,12 +31,16 @@ const Layout = () => {
                 headerTitleAlign: 'center',
                 animation: 'slide_from_right',
                 headerStyle: {
-                    backgroundColor: '#e29447'
+                    backgroundColor: '#1f99b0'
                 },
-                headerTintColor: '#fff',
                 headerTitleStyle: {
-                    fontWeight: 'bold'
-                }
+                    fontWeight: '400',
+                    color: '#2A2929',
+                    fontSize: 20
+                },
+                headerLeft: () => (
+                    <AppBarLeading />
+                )
             }}
         >
             <Text style={styles.header}>React Native</Text>
@@ -45,7 +51,8 @@ const Layout = () => {
             <Stack.Screen
                 name="index"
                 options={{
-                    title: "Home"
+                    title: "Home",
+                    headerTitle: props => <AppLogo {...props} />
                 }}
             />
 
