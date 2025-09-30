@@ -26,7 +26,6 @@ const CourseInfo = () => {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ title: "课程详情页"}} />
             <Text style={styles.text}>课程详情页</Text>
             <Text style={styles.text}>当前课程的id: { id }, title: { title }</Text>
             <TouchableOpacity onPress={() => navigation.setOptions({ title: "修改后的标题"})}>

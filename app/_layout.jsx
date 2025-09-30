@@ -41,11 +41,18 @@ const Layout = () => {
             <Slot />
             <Text style={styles.footer}>@develop with yuunik</Text>
 
+            {/* homepage */}
             <Stack.Screen
                 name="index"
                 options={{
                     title: "Home"
                 }}
+            />
+
+            {/* course info */}
+            <Stack.Screen
+                name="course/[id]"
+                options={({ route} ) => ({ title: route.params?.title || "Course Info"})}
             />
         </Stack>
     )

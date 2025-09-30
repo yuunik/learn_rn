@@ -30,7 +30,7 @@ const App = () => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => router.push('/course/[id]', { params: { id: 123, title: 'Course Info'}})}>
+            <TouchableOpacity style={styles.button} onPress={() => router.push({ pathname: '/course/[id]', params: { id: 1, title: 'Bun.js'}})}>
                 <Text style={styles.buttonText}>Go to courseInfo</Text>
             </TouchableOpacity>
         </View>
