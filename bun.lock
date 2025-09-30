@@ -7,6 +7,7 @@
         "@expo/vector-icons": "^15.0.2",
         "axios": "^1.12.2",
         "expo": "~54.0.10",
+        "expo-image": "^3.0.8",
         "expo-status-bar": "~3.0.8",
         "react": "19.1.0",
         "react-native": "0.81.4",
@@ -564,6 +565,8 @@
     "expo-file-system": ["expo-file-system@19.0.15", "https://registry.npmmirror.com/expo-file-system/-/expo-file-system-19.0.15.tgz", { "peerDependencies": { "expo": "*", "react-native": "*" } }, "sha512-sRLW+3PVJDiuoCE2LuteHhC7OxPjh1cfqLylf1YG1TDEbbQXnzwjfsKeRm6dslEPZLkMWfSLYIrVbnuq5mF7kQ=="],
 
     "expo-font": ["expo-font@14.0.8", "https://registry.npmmirror.com/expo-font/-/expo-font-14.0.8.tgz", { "dependencies": { "fontfaceobserver": "^2.1.0" }, "peerDependencies": { "expo": "*", "react": "*", "react-native": "*" } }, "sha512-bTUHaJWRZ7ywP8dg3f+wfOwv6RwMV3mWT2CDUIhsK70GjNGlCtiWOCoHsA5Od/esPaVxqc37cCBvQGQRFStRlA=="],
+
+    "expo-image": ["expo-image@3.0.8", "https://registry.npmmirror.com/expo-image/-/expo-image-3.0.8.tgz", { "peerDependencies": { "expo": "*", "react": "*", "react-native": "*", "react-native-web": "*" }, "optionalPeers": ["react-native-web"] }, "sha512-L83fTHVjvE5hACxUXPk3dpABteI/IypeqxKMeOAAcT2eB/jbqT53ddsYKEvKAP86eoByQ7+TCtw9AOUizEtaTQ=="],
 
     "expo-keep-awake": ["expo-keep-awake@15.0.7", "https://registry.npmmirror.com/expo-keep-awake/-/expo-keep-awake-15.0.7.tgz", { "peerDependencies": { "expo": "*", "react": "*" } }, "sha512-CgBNcWVPnrIVII5G54QDqoE125l+zmqR4HR8q+MQaCfHet+dYpS5vX5zii/RMayzGN4jPgA4XYIQ28ePKFjHoA=="],
 

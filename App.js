@@ -1,8 +1,13 @@
-import {Text, StyleSheet, View, FlatList, StatusBar, Dimensions} from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Dimensions
+}  from "react-native";
+import { Image } from 'expo-image'
 import {useEffect, useState} from "react";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import request from "./utils/request";
-import AppAlert from "./components/AppAlert";
 
 // 样式
 const styles = StyleSheet.create({
@@ -23,6 +28,14 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 30,
     height: 100
+  },
+  logo: {
+    width: 300,
+    height: 300,
+    borderRadius: 12,
+    boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+    margin: 20,
+    overflow: 'hidden'
   }
 })
 
@@ -78,7 +91,8 @@ const App = () => {
   return (
       <SafeAreaView style={[styles.container]}>
         <View style={styles.display}>
-          <StatusBar hidden />
+          <Image source={{ uri: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg' }} style={styles.logo} />
+          <Text>11111</Text>
         </View>
       </SafeAreaView>
   )
