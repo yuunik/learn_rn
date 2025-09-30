@@ -2,6 +2,7 @@
   "expo": {
     "name": "init_react_native",
     "slug": "init_react_native",
+    "scheme": "yuunik",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
