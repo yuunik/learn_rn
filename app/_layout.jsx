@@ -40,6 +40,13 @@ const Layout = () => {
             <Text style={styles.header}>React Native</Text>
             <Slot />
             <Text style={styles.footer}>@develop with yuunik</Text>
+
+            <Stack.Screen
+                name="index"
+                options={{
+                    title: "Home"
+                }}
+            />
         </Stack>
     )
 }
