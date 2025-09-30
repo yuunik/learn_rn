@@ -78,7 +78,7 @@ const App = () => {
   return (
       <SafeAreaView style={[styles.container]}>
         <View style={styles.display}>
-          <Text>当前屏幕宽度为: { width }, 高度为: { height }</Text>
+          <StatusBar hidden />
         </View>
       </SafeAreaView>
   )
